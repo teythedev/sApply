@@ -24,15 +24,16 @@ final class HomeViewController: UIViewController, HomeViewModelDelegate {
         super.viewDidLoad()
         view = HomeView(frame: view.frame)
         viewModel?.delegate = self
-        
-    }
-    override func viewDidLayoutSubviews() {
-        viewModel?.fetchCurrentUser(completion: {[weak self] result in
-            if !result {
+        viewModel?.fetchCurrentUser(completion: {[weak self] user in
+            if let user = user {
+                print("\(user.name)")
+            } else {
                 self?.present(ViewController(), animated: true)
             }
         })
+        
     }
+
     
    
 }

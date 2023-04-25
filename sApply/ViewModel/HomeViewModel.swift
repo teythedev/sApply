@@ -10,16 +10,13 @@ import Foundation
 
 
 final class HomeViewModel: HomeViewModelProtocol {
-    func fetchCurrentUser(completion: @escaping (Bool) -> ()) {
+    func fetchCurrentUser(completion: @escaping (User?) -> ()) {
         if isUserLoggedIn {
             print("Current User is: Bla")
+            completion(User(name: "Emre"))
         } else {
             print("User not logged In")
-            let vc = ViewController()
-            vc.view.backgroundColor = .red
-            vc.modalPresentationStyle = .fullScreen
-            completion(false)
-            //delegate?.handleViewModelOutput(.gotoLoginPage(vc))
+            completion(nil)
         }
     }
     
