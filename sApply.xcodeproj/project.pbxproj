@@ -13,6 +13,10 @@
 		AB66AEE329F87B6900869E79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB66AEE229F87B6900869E79 /* Assets.xcassets */; };
 		AB66AEE629F87B6900869E79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB66AEE429F87B6900869E79 /* LaunchScreen.storyboard */; };
 		AB66AEEF29F87D1A00869E79 /* HomeViewContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB66AEEE29F87D1A00869E79 /* HomeViewContracts.swift */; };
+		AB7247DA29F87D7800E89E26 /* Builders.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7247D929F87D7800E89E26 /* Builders.swift */; };
+		AB7247DD29F87D8700E89E26 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7247DC29F87D8700E89E26 /* HomeView.swift */; };
+		AB7247E029F87D9B00E89E26 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7247DF29F87D9B00E89E26 /* HomeViewController.swift */; };
+		AB7247E329F87DA800E89E26 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7247E229F87DA800E89E26 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		AB66AEE529F87B6900869E79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB66AEE729F87B6900869E79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB66AEEE29F87D1A00869E79 /* HomeViewContracts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewContracts.swift; sourceTree = "<group>"; };
+		AB7247D929F87D7800E89E26 /* Builders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Builders.swift; sourceTree = "<group>"; };
+		AB7247DC29F87D8700E89E26 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		AB7247DF29F87D9B00E89E26 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		AB7247E229F87DA800E89E26 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,10 @@
 		AB66AED829F87B6900869E79 /* sApply */ = {
 			isa = PBXGroup;
 			children = (
+				AB7247E129F87DA800E89E26 /* ViewModel */,
+				AB7247DE29F87D9B00E89E26 /* Controller */,
+				AB7247DB29F87D8700E89E26 /* View */,
+				AB7247D829F87D7800E89E26 /* Builders */,
 				AB66AEED29F87D1A00869E79 /* Contracts */,
 				AB66AED929F87B6900869E79 /* AppDelegate.swift */,
 				AB66AEDB29F87B6900869E79 /* SceneDelegate.swift */,
@@ -73,6 +85,38 @@
 				AB66AEEE29F87D1A00869E79 /* HomeViewContracts.swift */,
 			);
 			path = Contracts;
+			sourceTree = "<group>";
+		};
+		AB7247D829F87D7800E89E26 /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				AB7247D929F87D7800E89E26 /* Builders.swift */,
+			);
+			path = Builders;
+			sourceTree = "<group>";
+		};
+		AB7247DB29F87D8700E89E26 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AB7247DC29F87D8700E89E26 /* HomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AB7247DE29F87D9B00E89E26 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AB7247DF29F87D9B00E89E26 /* HomeViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		AB7247E129F87DA800E89E26 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AB7247E229F87DA800E89E26 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,7 +192,11 @@
 				AB66AEDE29F87B6900869E79 /* ViewController.swift in Sources */,
 				AB66AEDA29F87B6900869E79 /* AppDelegate.swift in Sources */,
 				AB66AEDC29F87B6900869E79 /* SceneDelegate.swift in Sources */,
+				AB7247E329F87DA800E89E26 /* HomeViewModel.swift in Sources */,
+				AB7247DD29F87D8700E89E26 /* HomeView.swift in Sources */,
 				AB66AEEF29F87D1A00869E79 /* HomeViewContracts.swift in Sources */,
+				AB7247E029F87D9B00E89E26 /* HomeViewController.swift in Sources */,
+				AB7247DA29F87D7800E89E26 /* Builders.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

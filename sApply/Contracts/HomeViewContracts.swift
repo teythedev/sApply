@@ -17,5 +17,5 @@ enum HomeViewModelOutput {
 
 protocol HomeViewModelProtocol {
     var delegate: HomeViewModelDelegate? { get set }
-    func fetchCurrentUser(completion: @escaping () -> ())
+    func fetchCurrentUser(completion: @escaping (Bool) -> ())
 }
