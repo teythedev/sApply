@@ -1,0 +1,35 @@
+//
+//  LoginViewModel.swift
+//  sApply
+//
+//  Created by Tugay Emre Yucedag on 26.04.2023.
+//
+
+import Foundation
+
+final class LoginViewModel: LoginViewModelProtocol {
+    var email: String? {
+        didSet {
+            checkFormValidity()
+        }
+    }
+    
+    var password: String? {
+        didSet {
+            checkFormValidity()
+        }
+    }
+    
+    var isFormValid: Bindable<Bool> = Bindable<Bool>()
+    
+    var delegate: LoginViewModelDelegate?
+    
+    private func checkFormValidity() {
+        let isValid = email?.isEmpty == false && password?.isEmpty == false
+        isFormValid.value = isValid
+    }
+    
+    func performLogin() {
+        print("logged in")
+    }
+}
