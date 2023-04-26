@@ -1,0 +1,45 @@
+//
+//  RegisterViewModel.swift
+//  sApply
+//
+//  Created by Tugay Emre Yucedag on 27.04.2023.
+//
+
+import Foundation
+
+final class RegisterViewModel: RegisteViewModelProtocol {
+    var delegate: RegisterViewModelDelegate?
+    
+    var isFormValid: Bindable<Bool> = Bindable<Bool>()
+    
+    var email: String? {
+        didSet {
+            checkFormValidity()
+        }
+    }
+    
+    var password: String? {
+        didSet {
+            checkFormValidity()
+        }
+    }
+    
+    var name: String? {
+        didSet {
+            checkFormValidity()
+        }
+    }
+    
+    var surname: String? {
+        didSet {
+            checkFormValidity()
+        }
+    }
+    
+    
+    private func checkFormValidity() {
+        let isValid = email?.isEmpty == false && password?.isEmpty == false
+        isFormValid.value = isValid
+    }
+    
+}

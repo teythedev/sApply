@@ -23,6 +23,10 @@
 		AB8CF5C929F97EC900665BC3 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CF5C829F97EC900665BC3 /* CustomTextField.swift */; };
 		AB8CF5CC29F9BAA400665BC3 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CF5CB29F9BAA400665BC3 /* Bindable.swift */; };
 		AB8CF5CF29F9CAB000665BC3 /* UIView+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CF5CE29F9CAB000665BC3 /* UIView+ext.swift */; };
+		AB8CF5D129F9D92500665BC3 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CF5D029F9D92500665BC3 /* RegisterViewController.swift */; };
+		AB8CF5D329F9D94900665BC3 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CF5D229F9D94900665BC3 /* RegisterViewModel.swift */; };
+		AB8CF5D529F9D95700665BC3 /* RegisterViewContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CF5D429F9D95700665BC3 /* RegisterViewContracts.swift */; };
+		AB8CF5D729F9DA6500665BC3 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8CF5D629F9DA6500665BC3 /* Protocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +48,10 @@
 		AB8CF5C829F97EC900665BC3 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		AB8CF5CB29F9BAA400665BC3 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		AB8CF5CE29F9CAB000665BC3 /* UIView+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ext.swift"; sourceTree = "<group>"; };
+		AB8CF5D029F9D92500665BC3 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		AB8CF5D229F9D94900665BC3 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		AB8CF5D429F9D95700665BC3 /* RegisterViewContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewContracts.swift; sourceTree = "<group>"; };
+		AB8CF5D629F9DA6500665BC3 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,8 @@
 			children = (
 				AB66AEEE29F87D1A00869E79 /* HomeViewContracts.swift */,
 				AB8CF5C529F97DA400665BC3 /* LoginViewContracts.swift */,
+				AB8CF5D429F9D95700665BC3 /* RegisterViewContracts.swift */,
+				AB8CF5D629F9DA6500665BC3 /* Protocols.swift */,
 			);
 			path = Contracts;
 			sourceTree = "<group>";
@@ -124,6 +134,7 @@
 			children = (
 				AB7247DF29F87D9B00E89E26 /* HomeViewController.swift */,
 				AB8CF5BF29F97D6800665BC3 /* LoginViewController.swift */,
+				AB8CF5D029F9D92500665BC3 /* RegisterViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -133,6 +144,7 @@
 			children = (
 				AB7247E229F87DA800E89E26 /* HomeViewModel.swift */,
 				AB8CF5C329F97D9500665BC3 /* LoginViewModel.swift */,
+				AB8CF5D229F9D94900665BC3 /* RegisterViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -242,13 +254,17 @@
 				AB8CF5CC29F9BAA400665BC3 /* Bindable.swift in Sources */,
 				AB8CF5C929F97EC900665BC3 /* CustomTextField.swift in Sources */,
 				AB66AEDE29F87B6900869E79 /* ViewController.swift in Sources */,
+				AB8CF5D729F9DA6500665BC3 /* Protocols.swift in Sources */,
+				AB8CF5D329F9D94900665BC3 /* RegisterViewModel.swift in Sources */,
 				AB66AEDA29F87B6900869E79 /* AppDelegate.swift in Sources */,
 				AB66AEDC29F87B6900869E79 /* SceneDelegate.swift in Sources */,
 				AB7247E329F87DA800E89E26 /* HomeViewModel.swift in Sources */,
+				AB8CF5D129F9D92500665BC3 /* RegisterViewController.swift in Sources */,
 				AB7247E629F87F7700E89E26 /* User.swift in Sources */,
 				AB66AEEF29F87D1A00869E79 /* HomeViewContracts.swift in Sources */,
 				AB7247E029F87D9B00E89E26 /* HomeViewController.swift in Sources */,
 				AB8CF5C429F97D9500665BC3 /* LoginViewModel.swift in Sources */,
+				AB8CF5D529F9D95700665BC3 /* RegisterViewContracts.swift in Sources */,
 				AB8CF5CF29F9CAB000665BC3 /* UIView+ext.swift in Sources */,
 				AB8CF5C629F97DA400665BC3 /* LoginViewContracts.swift in Sources */,
 				AB8CF5C029F97D6800665BC3 /* LoginViewController.swift in Sources */,

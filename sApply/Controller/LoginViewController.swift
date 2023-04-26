@@ -37,7 +37,6 @@ class LoginViewController: UIViewController, LoginViewModelDelegate {
     private let passwordTextField : CustomTextField = {
         let tf = CustomTextField(padding: 8, height: 65,isSecure: true)
         tf.placeholder = "Enter Password"
-        tf.isSecureTextEntry = true
         tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
@@ -67,8 +66,11 @@ class LoginViewController: UIViewController, LoginViewModelDelegate {
     }()
     
     @objc fileprivate func handleGoToLogin() {
-        let registerController = ViewController()
+        let registerController = RegisterViewController()
+        let registerViewModel = RegisterViewModel()
+        registerController.viewModel = registerViewModel
         //loginController.delegate = self.delegate
+    
         navigationController?.pushViewController(registerController, animated: true)
     }
     

@@ -20,24 +20,12 @@ final class CustomTextField: UITextField {
         layer.cornerRadius = height / 2
         backgroundColor = .white
         isSecureTextEntry = isSecure
-        setIcon()
-        
-    }
-
-    private func setIcon() {
-
-    }
-    
-    @objc private func handleSecure(){
-        print("Seru")
     }
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.insetBy(dx: padding, dy: 0)
     }
-    
 
-    
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.insetBy(dx: padding, dy: 0)
     }
