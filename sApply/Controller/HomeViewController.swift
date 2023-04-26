@@ -28,7 +28,10 @@ final class HomeViewController: UIViewController, HomeViewModelDelegate {
             if let user = user {
                 print("\(user.name)")
             } else {
-                self?.present(ViewController(), animated: true)
+                DispatchQueue.main.async {
+                    self?.present(ViewController(), animated: true)
+                }
+                
             }
         })
         
