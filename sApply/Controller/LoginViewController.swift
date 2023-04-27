@@ -61,18 +61,9 @@ class LoginViewController: UIViewController, LoginViewModelDelegate {
         button.setTitle("Go to Register", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
-        button.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleGoToRegister), for: .touchUpInside)
         return button
     }()
-    
-    @objc fileprivate func handleGoToLogin() {
-        let registerController = RegisterViewController()
-        let registerViewModel = RegisterViewModel()
-        registerController.viewModel = registerViewModel
-        //loginController.delegate = self.delegate
-    
-        navigationController?.pushViewController(registerController, animated: true)
-    }
     
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
@@ -89,20 +80,21 @@ class LoginViewController: UIViewController, LoginViewModelDelegate {
         return stackView
     }()
     
-
-    
     var viewModel: LoginViewModelProtocol?
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
         viewModel?.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
         view.backgroundColor = .orange
         view.layer.addSublayer(gradientLayer)
         view.addSubViews(views: stackView,goToRegister)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDismissKeyboard)))
         setConstraints()
         setupBindables()
+        setupNotificationObservers()
     }
     
     override func viewDidLayoutSubviews() {
@@ -112,6 +104,19 @@ class LoginViewController: UIViewController, LoginViewModelDelegate {
     
     func handleViewModelOutput(_ output: LoginViewModelOutput) {
         
+    }
+    
+    @objc fileprivate func handleGoToRegister() {
+        let registerController = RegisterViewController()
+        let registerViewModel = RegisterViewModel()
+        registerController.viewModel = registerViewModel
+        //loginController.delegate = self.delegate
+    
+        navigationController?.pushViewController(registerController, animated: true)
+    }
+    
+    @objc private func handleDismissKeyboard() {
+        view.endEditing(true)
     }
     
     @objc private func LoginButtonTapped() {
@@ -125,6 +130,7 @@ class LoginViewController: UIViewController, LoginViewModelDelegate {
             viewModel?.password = textField.text
         }
     }
+
     
     private func setupBindables() {
         viewModel?.isFormValid.bind(observer: { [ weak self ] result in
@@ -144,5 +150,38 @@ class LoginViewController: UIViewController, LoginViewModelDelegate {
             goToRegister.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             goToRegister.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
         ])
+    }
+}
+
+// MARK: - Extensions
+   
+extension LoginViewController {
+    private func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc fileprivate func handleKeyboardHide(notification: Notification) {
+        view.endEditing(true)
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1,options: .curveEaseOut){ [weak self] in
+            self?.view.transform = .identity
+        }
+    }
+    
+    @objc fileprivate func handleKeyboardShow(notification: Notification) {
+        guard let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        let keyboardFrame = value.cgRectValue
+        
+        // find the gap between register button and bottom of the screen
+        let bottomSpace = view.frame.height - stackView.frame.origin.y - stackView.frame.height
+        
+        let difference = keyboardFrame.height - bottomSpace
+        self.view.transform = CGAffineTransform(translationX: 0, y: -difference - 8)
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
     }
 }

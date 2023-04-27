@@ -34,7 +34,7 @@ class RegisterViewController: UIViewController, RegisterViewModelDelegate {
         return tf
     }()
     
-    private let SurnameTextField : CustomTextField = {
+    private let surnameTextField : CustomTextField = {
         let tf = CustomTextField(padding: 8, height: 65)
         tf.placeholder = "Enter Surname"
         tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
@@ -57,13 +57,38 @@ class RegisterViewController: UIViewController, RegisterViewModelDelegate {
         return tf
     }()
     
+    private let registerButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle( "Register", for: .normal)
+        button.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
+        button.backgroundColor = .tertiarySystemBackground
+        button.layer.cornerRadius = 12
+        button.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        button.setTitleColor(.gray, for: .normal)
+        button.backgroundColor = .tertiaryLabel
+        button.isEnabled = false
+        return button
+    }()
+    
+    private let goToLogin: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Go to Login", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        button.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
+        return button
+    }()
+    
+    
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             label,
             nameTextField,
-            SurnameTextField,
+            surnameTextField,
             emailTextField,
             passwordTextField,
+            registerButton
         ])
         stackView.axis = .vertical
         stackView.spacing = 16
@@ -78,9 +103,11 @@ class RegisterViewController: UIViewController, RegisterViewModelDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel?.delegate = self
+        nameTextField.delegate = self
+        surnameTextField.delegate = self
         view.layer.addSublayer(gradientLayer)
-        view.addSubViews(views: stackView)
-        
+        view.addSubViews(views: stackView, goToLogin)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDismissKeyboard)))
         setConstraints()
         setupBindables()
         setupNotificationObservers()
@@ -92,7 +119,17 @@ class RegisterViewController: UIViewController, RegisterViewModelDelegate {
         super.viewDidLayoutSubviews()
         gradientLayer.frame = view.bounds
     }
+    @objc private func handleDismissKeyboard() {
+        view.endEditing(true)
+    }
     
+    @objc fileprivate func handleGoToLogin() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func registerButtonTapped() {
+        //viewModel?.performLogin()
+    }
     
     private func setupBindables() {
         viewModel?.isFormValid.bind(observer: { [ weak self ] result in
@@ -108,8 +145,8 @@ class RegisterViewController: UIViewController, RegisterViewModelDelegate {
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             stackView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
             stackView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,constant:  -10),
-//            goToRegister.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-//            goToRegister.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            goToLogin.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            goToLogin.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
         ])
     }
     
@@ -149,4 +186,10 @@ class RegisterViewController: UIViewController, RegisterViewModelDelegate {
     }
 
 
+}
+
+extension RegisterViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+    }
 }

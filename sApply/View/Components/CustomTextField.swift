@@ -18,7 +18,9 @@ final class CustomTextField: UITextField {
         self.height = height
         super.init(frame: .zero)
         layer.cornerRadius = height / 2
-        backgroundColor = .white
+        layer.borderWidth = 2
+        layer.borderColor = UIColor.white.cgColor
+        
         isSecureTextEntry = isSecure
     }
     
