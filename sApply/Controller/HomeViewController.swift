@@ -19,11 +19,17 @@ final class HomeViewController: UIViewController, HomeViewModelDelegate {
     
     var viewModel: HomeViewModelProtocol?
     
-    let label: UILabel = {
-        let label = UILabel()
-        label.text = "This is Home View"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+//    let label: UILabel = {
+//        let label = UILabel()
+//        label.text = "This is Home View"
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        return label
+//    }()
+    let label: CustomCell = {
+        let cell = CustomCell()
+        cell.translatesAutoresizingMaskIntoConstraints = false
+        cell.backgroundColor = .blue
+        return cell
     }()
 
     
@@ -36,17 +42,22 @@ final class HomeViewController: UIViewController, HomeViewModelDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        viewModel?.fetchCurrentUser(completion: {[weak self] user in
-            if let user = user {
-                print("\(user.name)")
-            } else {
-                    let lgn = LoginViewController()
-                    let navController = UINavigationController(rootViewController: lgn)
-                    lgn.viewModel = LoginViewModel()
-                    navController.modalPresentationStyle = .fullScreen
+        if Temps.isLoggedIn {
+            viewModel?.fetchCurrentUser(completion: {[weak self] user in
+                if let user = user {
+                    print("\(user.name)")
+                } else {
+                        let lgn = LoginViewController()
+                        let navController = UINavigationController(rootViewController: lgn)
+                        lgn.viewModel = LoginViewModel()
+                        navController.modalPresentationStyle = .fullScreen
                     self?.present(navController, animated: true)
-            }
-        })
+                }
+            })
+        }else {
+            print("Fetch cellar")
+        }
+        
     }
     
     private func setConstraints() {

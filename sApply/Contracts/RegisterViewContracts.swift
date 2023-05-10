@@ -11,9 +11,13 @@ import Foundation
 
 protocol RegisterViewModelDelegate: AnyObject {
     
+    func handleViewModelOutput(_ output: RegisterViewModelOutput)
+    
 }
 
-enum RegisterViewModelOutput {}
+enum RegisterViewModelOutput {
+    case userRegistered(Bool)
+}
 
 
 protocol RegisteViewModelProtocol {
@@ -28,5 +32,9 @@ protocol RegisteViewModelProtocol {
     var name: String? { get set }
     
     var surname: String? { get set }
+    
+    func performRegister()
+    
+    
 }
 

@@ -30,6 +30,7 @@ final class LoginViewModel: LoginViewModelProtocol {
     }
     
     func performLogin() {
-        print("logged in")
+        Temps.isLoggedIn = true
+        delegate?.handleViewModelOutput(.userLoggedIn(true))
     }
 }

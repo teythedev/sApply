@@ -22,6 +22,7 @@ class LoginViewController: UIViewController, LoginViewModelDelegate {
         let label = UILabel()
         label.text = "sApply"
         label.textAlignment = .center
+        label.textColor = .white
         label.font = UIFont(name: "BaskerVille", size: 89)
         return label
     }()
@@ -103,14 +104,17 @@ class LoginViewController: UIViewController, LoginViewModelDelegate {
     }
     
     func handleViewModelOutput(_ output: LoginViewModelOutput) {
-        
+        switch output {
+        case .userLoggedIn(let result):
+            dismiss(animated: true)
+        }
     }
     
     @objc fileprivate func handleGoToRegister() {
         let registerController = RegisterViewController()
         let registerViewModel = RegisterViewModel()
         registerController.viewModel = registerViewModel
-        //loginController.delegate = self.delegate
+        registerViewModel.delegate = registerController
     
         navigationController?.pushViewController(registerController, animated: true)
     }

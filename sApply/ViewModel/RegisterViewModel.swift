@@ -38,8 +38,13 @@ final class RegisterViewModel: RegisteViewModelProtocol {
     
     
     private func checkFormValidity() {
-        let isValid = email?.isEmpty == false && password?.isEmpty == false
+        let isValid = email?.isEmpty == false && password?.isEmpty == false && name?.isEmpty == false && surname?.isEmpty == false
         isFormValid.value = isValid
+    }
+    
+    func performRegister() {
+        Temps.isLoggedIn = true
+        delegate?.handleViewModelOutput(.userRegistered(true))
     }
     
 }

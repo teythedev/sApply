@@ -11,7 +11,9 @@ protocol LoginViewModelDelegate: AnyObject {
     func handleViewModelOutput(_ output: LoginViewModelOutput)
 }
 
-enum LoginViewModelOutput {}
+enum LoginViewModelOutput {
+    case userLoggedIn(Bool)
+}
 
 
 protocol LoginViewModelProtocol {

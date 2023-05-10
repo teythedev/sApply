@@ -22,11 +22,12 @@ class RegisterViewController: UIViewController, RegisterViewModelDelegate {
     private let label: UILabel = {
         let label = UILabel()
         label.text = "sApply"
+        label.textColor = .white
         label.textAlignment = .center
         label.font = UIFont(name: "BaskerVille", size: 89)
         return label
     }()
-
+    
     private let nameTextField: CustomTextField = {
         let tf = CustomTextField(padding: 8, height: 65)
         tf.placeholder = "Enter Name"
@@ -99,7 +100,7 @@ class RegisterViewController: UIViewController, RegisterViewModelDelegate {
     }()
     
     var viewModel: RegisteViewModelProtocol?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel?.delegate = self
@@ -111,7 +112,7 @@ class RegisterViewController: UIViewController, RegisterViewModelDelegate {
         setConstraints()
         setupBindables()
         setupNotificationObservers()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -128,15 +129,15 @@ class RegisterViewController: UIViewController, RegisterViewModelDelegate {
     }
     
     @objc private func registerButtonTapped() {
-        //viewModel?.performLogin()
+        viewModel?.performRegister()
     }
     
     private func setupBindables() {
         viewModel?.isFormValid.bind(observer: { [ weak self ] result in
             guard let result = result else { return }
-//            self?.loginButton.isEnabled = result
-//            self?.loginButton.setTitleColor(result ? .black : .gray, for: .normal)
-//            self?.loginButton.backgroundColor = result ? .white : .tertiaryLabel
+                        self?.registerButton.isEnabled = result
+                        self?.registerButton.setTitleColor(result ? .black : .gray, for: .normal)
+                        self?.registerButton.backgroundColor = result ? .white : .tertiaryLabel
         })
     }
     
@@ -156,9 +157,9 @@ class RegisterViewController: UIViewController, RegisterViewModelDelegate {
         } else if textField == passwordTextField  {
             viewModel?.password = textField.text
         } else if textField == nameTextField {
-            viewModel?.email = textField.text
+            viewModel?.name = textField.text
         } else  {
-            viewModel?.password = textField.text
+            viewModel?.surname = textField.text
         }
     }
     
@@ -184,8 +185,15 @@ class RegisterViewController: UIViewController, RegisterViewModelDelegate {
         let difference = keyboardFrame.height - bottomSpace
         self.view.transform = CGAffineTransform(translationX: 0, y: -difference - 8)
     }
-
-
+    
+    func handleViewModelOutput(_ output: RegisterViewModelOutput) {
+        switch output {
+        case .userRegistered(let result):
+            dismiss(animated: true)
+        }
+    }
+    
+    
 }
 
 extension RegisterViewController: UITextFieldDelegate {
